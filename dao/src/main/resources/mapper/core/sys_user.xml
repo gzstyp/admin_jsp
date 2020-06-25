@@ -18,7 +18,7 @@
 		UPDATE sys_user SET error_time = DATE_ADD(NOW(),INTERVAL 30 MINUTE) WHERE user_name = #{userName} LIMIT 1
 	</update>
     <!-- 登录-最后登录时间 -->
-    <update id="updatelogintime" parameterType="String">
+    <update id="updateSucceedTime" parameterType="String">
 		UPDATE sys_user SET logintime = NOW() WHERE kid = #{userId} LIMIT 1
 	</update>
     <!-- 登录-更新登录次数 -->

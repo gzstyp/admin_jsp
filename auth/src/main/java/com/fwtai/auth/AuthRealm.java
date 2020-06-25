@@ -56,17 +56,17 @@ public class AuthRealm extends AuthorizingRealm{
             final User inexistence = userService.queryUser(username);
             if(inexistence != null){
                 if(inexistence.getError() < 0){
-                    throw new ExcessiveAttemptsException("当前帐号的密码连续错误3次<br/>已被系统临时锁定<br/>请在"+inexistence.getErrorTime()+"后重新登录");
+                    throw new ExcessiveAttemptsException("当前帐号或密码连续错误3次<br/>已被系统临时锁定<br/>请在"+inexistence.getErrorTime()+"后重新登录");
                 }
                 if (inexistence.getErrorCount() >= 3){
                     userService.updateLoginTime(username);/*当错误3次时更新错误的时刻就锁定*/
-                    throw new ExcessiveAttemptsException("当前帐号的密码连续错误3次<br/>已被系统临时锁定,请30分钟后重试");
+                    throw new ExcessiveAttemptsException("当前帐号或密码连续错误3次<br/>已被系统临时锁定,请30分钟后重试");
                 }
             }
-            throw new UnknownAccountException("用户名或密码错误");
+            throw new UnknownAccountException("帐号或密码错误");
         }
         if(user.getError() < 0){
-            throw new ExcessiveAttemptsException("当前帐号的密码连续错误3次<br/>已被系统临时锁定<br/>请在"+user.getErrorTime()+"后重新登录");
+            throw new ExcessiveAttemptsException("当前帐号或密码连续错误3次<br/>已被系统临时锁定<br/>请在"+user.getErrorTime()+"后重新登录");
         }
         if(user.getEnabled() == 1){
             throw new UnknownAccountException("账号已被禁用冻结");

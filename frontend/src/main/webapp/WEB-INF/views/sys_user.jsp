@@ -229,7 +229,7 @@
                                 </shiro:hasPermission>
                                 </shiro:hasPermission>
                                 <shiro:hasPermission name="user:row:editEnabled">
-                                html += "<a href='javascript:thisPage.unAuth();' style='outline:none;text-decoration: none;color:#33a3dc;margin-left:6px;'>启用禁用</a>";
+                                html += "<a href='javascript:thisPage.unAuth();' style='outline:none;text-decoration: none;color:#33a3dc;margin-left:6px;'>"+(row.enabled === 0 ? "禁用":"启用")+"</a>";
                                 </shiro:hasPermission>
                                 <shiro:hasPermission name="user:row:getOwnMenu">
                                 <shiro:hasPermission name="user:row:saveOwnMenu">
@@ -243,7 +243,7 @@
                                 html = "<a href='javascript:thisPage.rowEdit("+meta.row+");' style='outline:none;text-decoration: none;color:#3b8cff;margin-left:6px;'>编辑</a>" +
                                 "<a href='javascript:javascript:thisPage.unAuth();' style='outline:none;text-decoration: none;color:#f00;margin-left:6px;'>删除</a>" +
                                 "<a class='hidden-xs' href='javascript:thisPage.rowAllotRole("+meta.row+");' style='outline:none;text-decoration: none;color:#00a6ac;margin-left:6px;'>角色</a>"+
-                                "<a href='javascript:javascript:layerFn.alert(\"禁止操作,否则不能维护系统\",AppKey.code.code199);' style='outline:none;text-decoration: none;color:#33a3dc;margin-left:6px;'>启用禁用</a>"+
+                                "<a href='javascript:javascript:layerFn.alert(\"禁止操作,否则不能维护系统\",AppKey.code.code199);' style='outline:none;text-decoration: none;color:#33a3dc;margin-left:6px;'>"+(row.enabled === 0 ? "禁用":"启用")+"</a>"+
                                 "<a class='hidden-xs' href='javascript:layerFn.alert(\"嗨,你个土匪禁止操作!\",AppKey.code.code199);' style='outline:none;text-decoration: none;color:#008792;margin-left:6px;'>私有菜单</a>"+
                                 "<a href='javascript:thisPage.rowOwnMenu("+meta.row+");' style='outline:none;text-decoration: none;color:#06aff3;margin-left:6px;'>权限菜单</a>";
                                 </shiro:hasRole>
@@ -262,7 +262,7 @@
                                 </shiro:hasPermission>
                                 </shiro:hasPermission>
                                 <shiro:hasPermission name="user:row:editEnabled">
-                                html += "<a href='javascript:thisPage.rowDisable("+meta.row+");' style='outline:none;text-decoration: none;color:#33a3dc;margin-left:6px;'>启用禁用</a>";
+                                html += "<a href='javascript:thisPage.rowDisable("+meta.row+");' style='outline:none;text-decoration: none;color:#33a3dc;margin-left:6px;'>"+(row.enabled === 0 ? "禁用":"启用")+"</a>";
                                 </shiro:hasPermission>
                                 <shiro:hasPermission name="user:row:getOwnMenu">
                                 <shiro:hasPermission name="user:row:saveOwnMenu">
