@@ -42,6 +42,8 @@ public class UserService{
     @Resource
     private AsyncService asyncService;
 
+    private String SUPER_KEY = "ffffffffddf9f1ffffffffff88888888";
+
     public String add(final PageFormData pageFormData){
         final String p_user_name = "user_name";
         final String p_user_password = "user_password";
@@ -130,12 +132,12 @@ public class UserService{
         final String validate = ToolClient.validateField(pageFormData,p_kid);
         if(validate != null)return validate;
         final String kid = pageFormData.getString(p_kid);
+        if(SUPER_KEY.equals(kid)){
+            return ToolClient.createJson(ConfigFile.code204,ConfigFile.KEY_SUPER+"账号不能删除");
+        }
         final String user_name = userDao.queryExistById(kid);//查询是否存在
         if(user_name == null){
             return ToolClient.createJson(ConfigFile.code199,"用户账号已不存在");
-        }
-        if(user_name.equals(ConfigFile.KEY_SUPER)){
-            return ToolClient.createJson(ConfigFile.code204,user_name+"账号不能删除");
         }
         final int rows = userDao.delById(kid);
         return ToolClient.executeRows(rows);
@@ -237,6 +239,12 @@ public class UserService{
         if(validate != null)return validate;
         final String ids = pageFormData.getString(p_ids);
         final ArrayList<String> lists = ToolString.keysToList(ids);
+        if(lists.contains(SUPER_KEY)){
+            lists.remove(SUPER_KEY);
+        }
+        if(lists == null || lists.size() <= 0){
+            return ToolClient.createJson(ConfigFile.code199,"请选择要删除的数据");
+        }
         final int rows = userDao.delByKeys(lists);
         return ToolClient.executeRows(rows,"操作成功","用户已不存在,刷新重试");
     }
@@ -249,6 +257,14 @@ public class UserService{
         if(validate != null)return validate;
         final String fieldInteger = ToolClient.validateInteger(pageFormData,p_disable,p_enabled);
         if(fieldInteger != null)return fieldInteger;
+        final String kid = pageFormData.getString(p_userId);
+        if(SUPER_KEY.equals(kid)){
+            return ToolClient.createJson(ConfigFile.code204,"不能操作"+ConfigFile.KEY_SUPER+"账号");
+        }
+        final String user_name = userDao.queryExistById(pageFormData.getString(p_userId));//查询是否存在
+        if(user_name == null){
+            return ToolClient.createJson(ConfigFile.code199,"用户账号已不存在");
+        }
         final int rows = userDao.editEnabled(pageFormData);
         return ToolClient.executeRows(rows);
     }

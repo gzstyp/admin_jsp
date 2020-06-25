@@ -544,6 +544,11 @@
                 <shiro:hasPermission name="user:row:delById">
                 rowDel : function(index){
                     var row = thisJquery.fnGetData(index);
+                    var user_name = row.user_name;
+                    if(user_name == 'admin'){
+                        layerFn.alert('不能操作['+user_name+']账号',AppKey.code.code199);
+                        return;
+                    }
                     layerFn.confirm('['+row.user_name+']删除后是无法恢复,确定要删除吗?',function(){
                         layerFn.delByIdHint(urlDelById,row.kid,function(data){
                             thisPage.complete(data,null,true);
@@ -560,6 +565,11 @@
                 /*启用禁用*/
                 rowDisable : function(index){
                     var row = thisJquery.fnGetData(index);
+                    var user_name = row.user_name;
+                    if(user_name == 'admin'){
+                        layerFn.alert('不能操作['+user_name+']账号',AppKey.code.code199);
+                        return;
+                    }
                     var enabled = row.enabled;
                     var msg = '禁用';
                     var disable = 1;
