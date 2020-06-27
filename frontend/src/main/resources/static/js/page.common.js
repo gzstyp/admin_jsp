@@ -894,7 +894,7 @@
             head[0].appendChild(link);
         },
         getPageHashToken : function(url){
-            window.location.href = url + '?&access_token=' + sessionStorage.getItem('access_token') || '' + '&refresh_token=' + sessionStorage.getItem("refresh_token") || '';
+            window.location.href = url + '?&accessToken=' + sessionStorage.getItem('accessToken') || '' + '&refreshToken=' + sessionStorage.getItem("refreshToken") || '';
         },
         getPageNormal : function(url){
             window.location.href = url;
@@ -1845,12 +1845,12 @@
             });
     };
     $.ajaxSetup({
-        //headers: {'access_token': sessionStorage.getItem('access_token') || '',"refresh_token":sessionStorage.getItem("refresh_token") || ''},//这个属性不怎么好使
+        //headers: {'accessToken': sessionStorage.getItem('accessToken') || '',"refreshToken":sessionStorage.getItem("refreshToken") || ''},//这个属性不怎么好使
     });
     $.ajaxPrefilter(function(options,originalOptions,jqXHR){
-        // var access_token = sessionStorage.getItem('access_token') || '';//当前面的为null后面的是默认值
+        // var accessToken = sessionStorage.getItem('accessToken') || '';//当前面的为null后面的是默认值
         // var refresh_token = sessionStorage.getItem("refresh_token") || ''; //当前面的为null后面的是默认值
-        // options.data += '&access_token='+access_token+'&refresh_token='+refresh_token;//这个好使,意思是 所有的请求都要加上access_token=52556
+        // options.data += '&accessToken='+accessToken+'&refreshToken='+refreshToken;//这个好使,意思是 所有的请求都要加上accessToken=52556
         // 所有的post属性都要加上ssid
         /*if(options.method && options.method.toLowerCase() == 'post'){
             var ssid = sessionStorage.getItem('ssid'+window.ourpalmSdk) || '';
@@ -2020,7 +2020,7 @@
             type : type,
             url : urlPrefix + url,
             //xhrFields : {withCredentials: true},crossDomain : true,
-            headers : {'access_token': sessionStorage.getItem('access_token') || '',"refresh_token":sessionStorage.getItem("refresh_token") || ''},
+            headers : {'accessToken': sessionStorage.getItem('accessToken') || '',"refreshToken":sessionStorage.getItem("refreshToken") || ''},
             dataType : "json",
             data : params,
             beforeSend : function(request){

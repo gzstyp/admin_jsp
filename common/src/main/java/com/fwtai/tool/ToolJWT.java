@@ -31,10 +31,10 @@ import java.util.concurrent.Future;
 public final class ToolJWT implements Serializable{
 
     //如设置Token过期时间15分钟，建议更换时间设置为Token前5分钟,通过try catch 获取过期
-    private final static long access_token = 1000 * 60 * 45;//当 refresh_token 已过期了，再判断 access_token 是否已过期,
+    private final static long accessToken = 1000 * 60 * 45;//当 refreshToken 已过期了，再判断 accessToken 是否已过期,
 
     /**一般更换新的access_token小于5分钟则提示需要更换新的access_token*/
-    private final static long refresh_token = 1000 * 60 * 40;//仅做token的是否需要更换新的access_token标识,小于5分钟则提示需要更换新的access_token
+    private final static long refreshToken = 1000 * 60 * 40;//仅做token的是否需要更换新的accessToken标识,小于5分钟则提示需要更换新的accessToken
 
     private final static String issuer = "贵州富翁泰科技有限责任公司";//jwt签发者
 
@@ -110,11 +110,11 @@ public final class ToolJWT implements Serializable{
 
     /**仅作为是否需要刷新的access_token标识,不做任何业务处理*/
     public final static String expireRefreshToken(final String userId){
-        return createToken(userId,null,refresh_token);
+        return createToken(userId,null,refreshToken);
     }
 
     /**生成带认证实体且有权限的token,最后个参数是含List<String>的角色信息,*/
     public final static String expireAccessToken(final String userId,final Object value){
-        return createToken(userId,value,access_token);
+        return createToken(userId,value,accessToken);
     }
 }
