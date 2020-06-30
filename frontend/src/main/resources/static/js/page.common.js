@@ -1809,6 +1809,38 @@
                 }
             });
         },
+        /*表单提交,表单+文件异步提交,用法:
+        var formData = new FormData();
+        formData.append('KID',winFn.getDomValue(inputEditKeyId));
+        formData.append("PHOTO",document.getElementById("PHOTO").files[0]);//获取上传文件
+        layerFn.formSubmit(url,formData,function(data){});
+        */
+        formSubmit : function(url,formData,succeed,error){
+            $.ajax({
+                url : urlPrefix + url,
+                type : "POST",
+                data : formData,
+                contentType : false,
+                processData : false,
+                headers : {'accessToken': sessionStorage.getItem('accessToken') || '',"refreshToken":sessionStorage.getItem("refreshToken") || ''},
+                dataType : "json",
+                success : function(data){
+                    if(data.code == AppKey.code.code200){
+                        succeed(data);
+                    }else{
+                        layerFn.alert(data.msg,data.code);
+                    }
+                },
+                error : function (err){
+                    if(error){
+                        error(err);
+                    }else{
+                        layerFn.connectFailure();
+                    }
+                },
+                complete : function(response,status){}
+            });
+        }
     };
     /**alert('好的,谢谢!',function(){alert('嗯,再见!')})*/
     window.alert = function(msg,callback){
