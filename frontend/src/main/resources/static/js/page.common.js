@@ -1833,15 +1833,16 @@
         layerFn.formSubmit(url,formData,function(data){});
         */
         formSubmit : function(url,formData,succeed,error){
+            var layerIndex = layerFn.loading('正在处理……');
             $.ajax({
                 url : urlPrefix + url,
                 type : "POST",
                 data : formData,
                 contentType : false,
                 processData : false,
-                headers : {'accessToken': sessionStorage.getItem('accessToken') || '',"refreshToken":sessionStorage.getItem("refreshToken") || ''},
                 dataType : "json",
                 success : function(data){
+                    layerFn.closeIndex(layerIndex);
                     if(data.code == AppKey.code.code200){
                         succeed(data);
                     }else{
@@ -1849,13 +1850,16 @@
                     }
                 },
                 error : function (err){
+                    layerFn.closeIndex(layerIndex);
                     if(error){
                         error(err);
                     }else{
                         layerFn.connectFailure();
                     }
                 },
-                complete : function(response,status){}
+                complete : function(response,status){
+                    layerFn.closeIndex(layerIndex);
+                }
             });
         }
     };
