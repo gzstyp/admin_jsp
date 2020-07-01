@@ -893,8 +893,9 @@
             link.href = href;
             head[0].appendChild(link);
         },
+        /*winFn.getPageHashToken('/info.html?id=1024');*/
         getPageHashToken : function(url){
-            window.location.href = url + '?&accessToken=' + sessionStorage.getItem('accessToken') || '' + '&refreshToken=' + sessionStorage.getItem("refreshToken") || '';
+            window.open(url, '_blank').location;/*js打开新页面*/
         },
         getPageNormal : function(url){
             window.location.href = url;
