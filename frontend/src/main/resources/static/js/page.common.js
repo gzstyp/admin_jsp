@@ -1614,7 +1614,7 @@
             return WUR.layer.open({
                 type : 1,
                 title : title,
-                content: $(domDivId),//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                content : $(domDivId),//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                 area : area,
                 resize : false,
                 btn : btns,
@@ -1624,26 +1624,29 @@
                     }
                 },
                 btn2: function(index,layero){//第2个按钮-取消按钮
-                    UE.getEditor(scriptId).destroy();//销毁
+                    //UE.getEditor(scriptId).destroy();//销毁
                 },
                 btn3 : function(index,layero){
+                    //UE.getEditor(scriptId).destroy();//销毁
                     if (btn3Call != null && btn3Call != '' && btn3 != null && btn3 != ''){
                         btn3Call(index,layero);
                     }
                     return false;
                 },
                 cancel: function(index,layero){//右上角关闭按钮
-                    UE.getEditor(scriptId).destroy();//销毁
+                    //UE.getEditor(scriptId).destroy();//销毁
                 },
                 success: function(layero,index){//成功打开layer时执行
                     var ue = UE.getEditor(scriptId);//实例化编辑器
-                    ue.ready(function(){
-                        if(data != null){
-                            ue.setContent(data);
-                        }else{
-                            ue.setContent('');
-                        }
-                    });
+                    setTimeout(function(){
+                        ue.ready(function(){
+                            if(data != null && data != ''){
+                                ue.setContent(data,false);
+                            }else{
+                                ue.setContent('');
+                            }
+                        });
+                    },300);
                 }
             });
         },
