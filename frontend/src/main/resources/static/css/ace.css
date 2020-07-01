@@ -8962,7 +8962,7 @@ select:focus {
   outline: none;
 }
 textarea.form-control {
-  padding: 5px 9px;
+  padding: 3px;
 }
 select {
   padding: 3px 4px;
