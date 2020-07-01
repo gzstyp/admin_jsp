@@ -957,6 +957,23 @@
         /*根据不同的值显示对应的文字,其中:textDom是显示文字的dom,text需要显示的文字,winFn.writeBack('#xx','');*/
         writeBack: function(textDom,text){
             $(textDom).text(text);
+        },
+        /* 基于ace框架 winFn.initFileInput('#id-input-file-1,#PHOTO');支持多个dom,如: $('#id-input-file-1,#PHOTO')*/
+        initFileInput : function(doms){
+            $(doms).ace_file_input({
+                no_file:'未选择任何文件',
+                btn_choose:'选择文件',
+                btn_change:'重新选择',
+                droppable:false,
+                onchange:null,
+                thumbnail:false,
+                allowExt: ["jpeg","jpg","png","gif","bmp"],
+                allowMime : ["image/jpg","image/jpeg","image/png","image/gif","image/bmp"]
+            }).on('change',function(data){
+                if(!data.result){
+                    layerFn.alert('请选择图片格式',AppKey.code.code199);
+                }
+            });
         }
     },
     /**easyui专属方法,依赖easyui*/
@@ -1626,7 +1643,7 @@
                         }else{
                             ue.setContent('');
                         }
-                    })
+                    });
                 }
             });
         },
