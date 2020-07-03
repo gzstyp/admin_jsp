@@ -9193,7 +9193,7 @@ input[type=radio].ace + .lbl::before {
   cursor: pointer;
   font-family: fontAwesome;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 11px;/*复选框或单选框内的大小*/
   color: #FFF;
   content: "\a0";
   background-color: #FAFAFA;
@@ -9204,9 +9204,9 @@ input[type=radio].ace + .lbl::before {
   display: inline-block;
   text-align: center;
   height: 16px;
-  line-height: 14px;
+  line-height: 15px;
   min-width: 16px;
-  margin-right: 1px;
+  margin-right: 4px;
   position: relative;
   top: -1px;
 }
@@ -9214,7 +9214,7 @@ input[type=checkbox].ace:checked + .lbl::before,
 input[type=radio].ace:checked + .lbl::before {
   display: inline-block;
   content: '\f00c';
-  color: #32a3ce;
+  color: #459df5;/*复选框或单选框内的颜色*/
   background-color: #F5F8FC;
   border-color: #adb8c0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
@@ -9272,8 +9272,8 @@ input[type=radio].ace + .lbl::before {
   border-radius: 100%;
   font-size: 10px;
   font-family: FontAwesome;
-  text-shadow: 0 0 1px #32a3ce;
-  line-height: 15px;
+  text-shadow: 0 0 1px #3b92e9;
+  line-height: 16px;
   height: 17px;
   min-width: 17px;
 }
@@ -9737,20 +9737,20 @@ input.ace + .lbl.padding-0::before {
   text-decoration: none;
 }
 .ace-file-input .remove {
-  position: absolute;
-  right: -8px;
-  top: 6px;
+  background-color:#fb6e4e;
+  border-radius: 100%;
+  color: #fff;
   display: none;
-  width: 17px;
-  text-align: center;
-  height: 17px;
-  line-height: 15px;
   font-size: 11px;
   font-weight: normal;
-  background-color: #fb7142;
-  border-radius: 100%;
-  color: #FFF;
+  height: 15px;
+  line-height: 13px;
+  position: absolute;
+  right: 0;
+  text-align: center;
   text-decoration: none;
+  top: 9px;
+  width: 15px;
 }
 .ace-file-input .ace-file-container.selected + .remove {
   display: inline-block;
@@ -15009,8 +15009,8 @@ div.dataTables_processing {
 }
 .chosen-container > .chosen-single,
 [class*="chosen-container"] > .chosen-single {
-  line-height: 28px;
-  height: 32px;
+  line-height: 34px;
+  height: 34px;
   box-shadow: none;
   background: #FAFAFA;
 }
