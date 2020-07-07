@@ -63,6 +63,34 @@
     </div>
 </div>
 
+取值:
+var checkboxValue = '';
+checkboxs.each(function(){
+    var v = $(this).val();
+    if(checkboxValue.length > 0){
+        checkboxValue = checkboxValue + ',' + v;
+    }else{
+        checkboxValue = v;
+    }
+});
+console.info(checkboxValue);
+赋值:
+方式1：
+$("input:checkbox[value='1']").prop("checked",true);
+
+方式2：
+var arrs = [1,2];
+$.each(arrs,function(index,value){
+    $("input[name='checkbox1'][value="+value+"]").prop("checked",true);
+});
+方式3：
+$("input[name='checkbox1']").each(function(index,element){
+    var v = $(this).val();
+    if(v == 1){
+        $(this).prop("checked",true);
+    }
+});
+
 表单时-单选框
 <label class="col-sm-3 control-label no-padding-right"><div class="hr-4"></div>性别</label>
 <div class="col-sm-7">
@@ -86,6 +114,32 @@
         </label>
     </div>
 </div>
+赋值：
+$("input[name='radio']").each(function(index,element){
+    var v = $(this).val();
+    if(v == 1){
+        $(this).prop("checked",true);
+    }
+});
+$.each(map.data,function(k,v){
+    try{
+        if(k =='STATE'){
+            $("input[name='STATE']").each(function(index,element){
+                var value = $(this).val();
+                if(v == value){
+                    $(this).prop("checked",true);
+                }
+            });
+        }
+        $('#'+k).val(v);
+    }catch(e){}
+});
+
+取值：
+var STATE = $("input[name='STATE']:checked").val();
+console.info(STATE);
+
+
 
 表单时-下拉列表项
 <label class="col-sm-3 control-label no-padding-right"><div class="hr-4"></div>菜单权限标识</label>
