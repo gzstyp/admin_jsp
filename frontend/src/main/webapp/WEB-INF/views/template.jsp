@@ -65,7 +65,7 @@
 
 取值:
 var checkboxValue = '';
-checkboxs.each(function(){
+$("input[name='checkbox1']:checked").each(function(){
     var v = $(this).val();
     if(checkboxValue.length > 0){
         checkboxValue = checkboxValue + ',' + v;
