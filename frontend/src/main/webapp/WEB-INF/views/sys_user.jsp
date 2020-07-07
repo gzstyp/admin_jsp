@@ -475,7 +475,7 @@
                     $(tableDom + ' input[type=checkbox]').prop('checked',false);
                     thisTable.draw();
                 },</shiro:hasPermission>
-                resetFormMen : function(){
+                resetFormUser : function(){
                     winFn.clearFormData('#form_user_edit');
                 },
                 edit : function(kid,user_name){
@@ -522,7 +522,7 @@
                         };
                         thisPage.commit(kid,index,params);
                     });
-                    thisPage.resetFormMen();
+                    thisPage.resetFormUser();
                     if(kid != null){
                         <shiro:hasPermission name="user:row:edit">
                         $('#user_name').val(user_name);

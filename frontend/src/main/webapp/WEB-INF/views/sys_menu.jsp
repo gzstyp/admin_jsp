@@ -1511,7 +1511,7 @@
                     $(tableDom + ' input[type=checkbox]').prop('checked',false);
                     thisTable.draw();
                 },</shiro:hasPermission>
-                resetFormMen : function(){
+                resetFormMenu : function(){
                     winFn.dropdown('#type','','#dropdownMenuType','选择类型');
                     winFn.dropdown('#category','','#dropdownCategory','权限类型');
                     winFn.dropdown('#subset','','#dropdownSubset','菜单选项');
@@ -1632,11 +1632,11 @@
                         };
                         thisPage.commit(kid,index,params);
                     },'<span style="color:#f84009;">重置</span>',function(){
-                        thisPage.resetFormMen();//清空表单
+                        thisPage.resetFormMenu();//清空表单
                         tree_obj.cancelSelectedNode();//取消选中
                         tree_obj.expandAll(false);//全部折叠,只能放在这里,否则会报错!
                     });
-                    thisPage.resetFormMen();
+                    thisPage.resetFormMenu();
                     tree_obj = $.fn.zTree.init($("#"+domTree),setting);//初始化树形菜单及并读取数据
                     if(map != null){
                         $.each(map.data,function(k,v){

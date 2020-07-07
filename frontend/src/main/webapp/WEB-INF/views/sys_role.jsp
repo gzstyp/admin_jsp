@@ -353,7 +353,7 @@
                     $(tableDom + ' input[type=checkbox]').prop('checked',false);
                     thisTable.draw();
                 },</shiro:hasPermission>
-                resetFormMen : function(){
+                resetFormRole : function(){
                     winFn.clearFormData('#form_role_edit');
                 },
                 edit : function(kid,role_name,role_flag){
@@ -370,7 +370,7 @@
                         thisPage.openDialog(title,null);
                         </shiro:hasPermission>
                     }
-                    thisPage.resetFormMen();
+                    thisPage.resetFormRole();
                     if(kid != null){
                         winFn.setDomValue('#role_name',role_name);
                         winFn.setDomValue('#role_flag',role_flag);
@@ -393,7 +393,6 @@
                         };
                         thisPage.commit(kid,index,params);
                     });
-                    thisPage.resetFormMen();
                 },
                 <shiro:hasPermission name="role:row:edit">
                 rowEdit : function(index){
