@@ -1,8 +1,5 @@
 package com.fwtai.tool;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -128,7 +125,7 @@ public final class ToolCrypto {
         final Key key = (Key) keyMap.get(PUBLIC_KEY);
         //byte[] publicKey = key.getEncoded();
         //编码返回字符串
-        return (new BASE64Encoder()).encodeBuffer(key.getEncoded());
+        return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
     //获得私钥
@@ -137,12 +134,12 @@ public final class ToolCrypto {
         final Key key = (Key) keyMap.get(PRIVATE_KEY);
         //byte[] privateKey = key.getEncoded();
         //编码返回字符串
-        return (new BASE64Encoder()).encodeBuffer(key.getEncoded());
+        return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
     /**java生成的私钥是pkcs8格式的公钥是x.509格式*/
     private final static PublicKey getPublicKey(final String key) throws Exception {
-        final byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(key);
+        final byte[] keyBytes = Base64.getDecoder().decode(key);
         final X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         final KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         final PublicKey publicKey = keyFactory.generatePublic(keySpec);
@@ -150,7 +147,7 @@ public final class ToolCrypto {
     }
 
     private final static PrivateKey getPrivateKey(final String key) throws Exception {
-        final byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(key);
+        final byte[] keyBytes = Base64.getDecoder().decode(key);
         final PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         final KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         final PrivateKey privateKey = keyFactory.generatePrivate(keySpec);

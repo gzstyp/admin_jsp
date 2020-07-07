@@ -5,7 +5,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import sun.misc.BASE64Decoder;
 
 import java.io.Serializable;
 import java.security.KeyFactory;
@@ -13,6 +12,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.Date;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -39,14 +39,14 @@ public final class ToolJWT implements Serializable{
     private final static String issuer = "贵州富翁泰科技有限责任公司";//jwt签发者
 
     /**2048的密钥位的公钥*/
-    private final static String publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkWsnQxAeD8VNI1YsHnCCO1BlN1a9NBY/OybHr87zrlkm1aLjYIwWJHNqanGNY2ltKLNjdsgR9jseLIwUFR97PkXSwsOkn1ruSRTgDU7csvXukGrouQ+UX5eHZmoajRdHdbc1s91f3TZK3SFGpWpdqutcZaq3WhiPvluH0gjoIrK89VHzYUVVzwSUCLTZViEsBTZKL8q46GyBvr0WwFmY80LRS99wr5BsLhfYew8C5koKXWeX9sYVxRpg7V2ZdrXOWaJb8y00VmeQAieKEGVRY0CVWKRxodVQqEA0PPLU1kZnG4mwMHMwa1B9X+aAfHVD2tX0f9P1NjowD0/GZf84qQIDAQAB";
+    private final static String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCGux/yERhRjyt2Y7gJa3qWFoEbNVVuF8KVYUFPmwK8udhor67VkCKiPRktQkudjaqwX/HXj2isiRDT2F7HLcABBu7/74vUQ0xzDCbo5ETLXLNWP5SpftOnkqeXSrPpOYhg75eSFS21QkkBnWqJK2EjkkBUUKQKuusXpBYtP9h6+wIDAQAB";
     /**2048的密钥位的私钥*/
-    private final static String privateKey = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCRaydDEB4PxU0jViwecII7UGU3Vr00Fj87JsevzvOuWSbVouNgjBYkc2pqcY1jaW0os2N2yBH2Ox4sjBQVH3s+RdLCw6SfWu5JFOANTtyy9e6Qaui5D5Rfl4dmahqNF0d1tzWz3V/dNkrdIUalal2q61xlqrdaGI++W4fSCOgisrz1UfNhRVXPBJQItNlWISwFNkovyrjobIG+vRbAWZjzQtFL33CvkGwuF9h7DwLmSgpdZ5f2xhXFGmDtXZl2tc5ZolvzLTRWZ5ACJ4oQZVFjQJVYpHGh1VCoQDQ88tTWRmcbibAwczBrUH1f5oB8dUPa1fR/0/U2OjAPT8Zl/zipAgMBAAECggEAeQPuQY4JJmCwSAbvYkmI52mJQdtKSy10Y3prVXBpNB93BPSwOml6B82QspJa8m8K64MV9ASdhgc+nh3YnJd9TZ53vaNovUDD6keYCRsm6Ttm1AJUN6WyeTa19FG6VM4ZpunXpB5HJ+WFua52hzQUTSfe1bCTM0QbY3PyfKTy4eQRWtvmPQVWwHrndxb+J+PlRlUranujnaBkCwf70okPdJLc7xTeUvAslF6Nhli8gRPV2sylz/04tO8dT9kJyd9UEomCT4qI3fba7Gicw4C7kLfjrRYu9KaNd3vrb+9IR7Cs3dR0lRfoHZLrlMBS1LPG0cL8qJjiaGzLoYjDqEQ7nQKBgQDMOmCAkctMgbPi5JL2C/e1yUvAmR2QtQOEdza47jXKeqXxTxeyvfDvp4AgSm08TTWfK8kg0Wa4MJvLP8VSo6PUiLlQfvsM4ZNIpr0oXp8SZpJomGK4MSdc326QEUzSNnClQICc8v+aAJpP8kyCLhLtpQUEkTaXoFlZZjVKtLoG9wKBgQC2SEP8QKmU8PzvOPiZaI8xFSWyGmj97lzsRX4GsMHqX5L37TAlb4P0T62gWaVabGk/O4oehbp/sv8G7+dcarN4JxeTcx8qWaOJtWsZVmye4FnCEE/JfUVUY6K4t2HVz9qK2t1t7/7P4I5lYX3jai7k3BMZrnX12VyCFaNtLca1XwKBgQDJ+/6PiiJIY4s3HxveLw3qA9FhBc6A3RZCf+lmU2pt/Il8tN3aURMm40HMLfAFkNM0vohoZdIy3xhml4af6epRfHvTihLftYYGd6pjb9nhyAKLYhNY2nx01SIzaHjS+zbDqZzKHWcAuBHmedyDb/AWi3v//WLB6bwUuAqC/WVzFwKBgA2g8ZRWsVc1fXPVaqDttGcTEbJzTw5NWB1CRN3zMUx4wOBQl5z07YTCwFSQ31AXcvcLWJRXo04Q8Ahwv3elcq21HoojvVzJPvT4330RfSWT2KIt3glOmHRqzqvI6kO2OrzPCGdD3mVkgMELvQHX2pG58qOk66TqD4SaYZG0Lns5AoGACzIVew8t0+TH34RMbcdd9WWIDX7+DWJyVKLgI5OHPIA7TV1EhLJjjMW1un5/EzBU4IoNCUncZzcMC6JpMApshvVgsbN4a06EaFyxE5QLjZhnU2TJ8V0lzQuugTv8paSNyXZ7/sqt36mVsWy7b8h/LrF8+RaXJCFt2eV9zXQy07c=";
+    private final static String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIa7H/IRGFGPK3ZjuAlrepYWgRs1VW4XwpVhQU+bAry52GivrtWQIqI9GS1CS52NqrBf8dePaKyJENPYXsctwAEG7v/vi9RDTHMMJujkRMtcs1Y/lKl+06eSp5dKs+k5iGDvl5IVLbVCSQGdaokrYSOSQFRQpAq66xekFi0/2Hr7AgMBAAECgYADGRxz8YawoW0rbMGXndwUxXG0kXZkcLFtw+2/id33PwLF7XxEturE9ki07LhWaCKLqbki7s5GYWR8qpYLWHb4xnVxuZMtH/KD198tZz77zh35qdmOzhOirPudoKua7vhDZFb5EUjx4AYSffI47PuzAyWqTWxyyoVr/0H6MKhNmQJBANPpQcp5CS8iFXkuYookH5t2qNEr7yGg31KbtQA82f0Ky4gCJj23fS5Xjf5BESV0DGoKrL6oi+4zqq7vp0QK9u0CQQCiwx74PlT+0pOHPvnLXigV3x088C0XTiyKZtUpeFDhPB7mauIzMQ2dYU+a9rLDvS/QnAMeADceOEWZ7rqJZNSHAkEAsBWd9pmWeRTQVQ6nEPStUuhJpO3l2cKsbx81SspFtM8Yip6GmjfzC+Py+DenAMEqY58VJaQ2Civig1ReX9rgjQJAP+LOuSneOtd0yNVTPxwKJ+uXkl/Dky5AFWMfsFNli8MJbe/uMaHDck7L7EuBB4uuxPc30gLLn7T+vNkTpvJI6QJAcJosBLHGLyn+41VBJQrXluXArv/wnJFlXeScCA2ID5B3HJ8+l9KTt+wyLvt1WXL6CbJQIwji/iYGJ3wEZsLddA==";
 
     /**java生成的私钥是pkcs8格式的公钥是x.509格式*/
     private final static PublicKey getPublicKey(){
         try {
-            final byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(publicKey);
+            final byte[] keyBytes = Base64.getDecoder().decode(publicKey);
             final X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
             final KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             final PublicKey publicKey = keyFactory.generatePublic(keySpec);
@@ -59,7 +59,7 @@ public final class ToolJWT implements Serializable{
 
     private final static PrivateKey getPrivateKey(){
         try {
-            final byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(privateKey);
+            final byte[] keyBytes = Base64.getDecoder().decode(privateKey);
             final PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
             final KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             final PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
