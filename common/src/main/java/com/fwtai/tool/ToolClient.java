@@ -1136,7 +1136,7 @@ public final class ToolClient implements Serializable{
                 }
                 final String fullPath = (baseDir + dayDir + fileName).replaceAll("//","/");
                 mf.transferTo(new File(fullPath));
-                uploadFile.setUrlFile(dayDir + fileName);
+                uploadFile.setUrlFile("/images"+dayDir + fileName);
                 uploadFile.setOriginalName(originalName);
                 uploadFile.setFullPath(fullPath);
                 uploadFile.setFileName(fileName);
