@@ -90,7 +90,7 @@
     var scripts = [null,null];
     $('.page-content-area').ace_ajax('loadScripts',scripts,function(){
         var tableDom = '#tableListRole';
-        var checkOption = 1;
+        var checkOption = false;
         $(function(){
             <shiro:hasPermission name="role:btn:listData">
             var urlRoute = '/role/';/*请求controller层的url*/
@@ -435,7 +435,6 @@
                 <shiro:hasPermission name="role:row:getRoleMenu">
                 /*角色菜单*/
                 rowRoleMenu : function(index){
-                    checkOption = 1;
                     var row = thisJquery.fnGetData(index);
                     layerFn.queryGetHint(urlGetRoleMenu,{roleId:row.kid},function(data){
                         tree_obj_own = $.fn.zTree.init($("#"+domRoleMenu),settingOwn,data.data);
@@ -457,8 +456,8 @@
                             });
                             </shiro:hasPermission>
                         },'全选',function(){
-                            checkOption++;
-                            if(checkOption % 2 === 0){
+                            checkOption = !checkOption;
+                            if(checkOption){
                                 $('a.layui-layer-btn2').text('不选');
                                 tree_obj_own.checkAllNodes(true);
                             }else{
