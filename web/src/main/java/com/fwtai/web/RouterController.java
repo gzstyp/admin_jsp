@@ -25,8 +25,8 @@ public class RouterController{
     @Resource
     private MenuService menuService;
 
-    @RequiresPermissions("page:main")
-    @GetMapping(value = "main",name = "page:main")
+    @RequiresPermissions("page_main")
+    @GetMapping(value = "main",name = "page_main")
     public ModelAndView main(final HttpServletRequest request){
         final ModelAndView modeView = new ModelAndView();
         final String userId = (String) request.getSession().getAttribute(ConfigFile.LOGIN_KEY);
@@ -36,20 +36,20 @@ public class RouterController{
         return modeView;
     }
 
-    @RequiresPermissions("page:sys_menu")
-    @GetMapping(value = "sys_menu",name = "page:sys_menu")
+    @RequiresPermissions("page_sys_menu")
+    @GetMapping(value = "sys_menu",name = "page_sys_menu")
     public String sysMenu(){
         return "sys_menu";
     }
 
-    @RequiresPermissions("page:sys_user")
-    @GetMapping(value = "sys_user",name = "page:sys_user")
+    @RequiresPermissions("page_sys_user")
+    @GetMapping(value = "sys_user",name = "page_sys_user")
     public String sysUser(){
         return "sys_user";
     }
 
-    @RequiresPermissions("page:sys_role")
-    @GetMapping(value = "sys_role",name = "page:sys_role")
+    @RequiresPermissions("page_sys_role")
+    @GetMapping(value = "sys_role",name = "page_sys_role")
     public String sysRole(){
         return "sys_role";
     }

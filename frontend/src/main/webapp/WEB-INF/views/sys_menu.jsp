@@ -11,7 +11,7 @@
                 <div class="clearfix">
                     <table class="no-border" style="display:inline">
                         <tr>
-                            <shiro:hasPermission name="menu:btn:listData">
+                            <shiro:hasPermission name="menu_btn_listData">
                             <td class="hidden-480" style="padding: 0px 6px;">菜单类型</td>
                             <td class="hidden-480">
                                 <div class="btn-group">
@@ -59,7 +59,7 @@
                                 </div>
                             </td>
                             </shiro:hasPermission>
-                            <shiro:hasPermission name="menu:btn:add">
+                            <shiro:hasPermission name="menu_btn_add">
                             <td>
                                 <div class="input-group">
                                 <span class="input-group-btn">
@@ -73,11 +73,11 @@
                             </shiro:hasPermission>
                         </tr>
                     </table>
-                    <shiro:hasPermission name="menu:btn:listData">
+                    <shiro:hasPermission name="menu_btn_listData">
                     <div class="hidden-480 pull-right tableTools-container"></div>
                     </shiro:hasPermission>
                 </div>
-                <shiro:hasPermission name="menu:btn:listData">
+                <shiro:hasPermission name="menu_btn_listData">
                 <table id="tableListMenu" class="table table-striped table-bordered table-hover"></table>
                 </shiro:hasPermission>
             </div>
@@ -1142,24 +1142,24 @@
         var tableDom = '#tableListMenu';
         var ztreeReqFlag = true;
         $(function(){
-            <shiro:hasPermission name="menu:btn:listData">
+            <shiro:hasPermission name="menu_btn_listData">
             var urlRoute = '/menu/';/*请求controller层的url*/
             var notAuthorized = urlRoute + "notAuthorized";
             var urlListData = urlRoute + 'listData';/*获取菜单列表,此处不需要添加的,已在请求的url添加了前缀*/
-            <shiro:hasPermission name="menu:btn:add">
+            <shiro:hasPermission name="menu_btn_add">
             var urlAdd = urlRoute + 'add';/*添加*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="menu:row:edit">
+            <shiro:hasPermission name="menu_row_edit">
             var urlEdit = urlRoute + 'edit';/*编辑*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="menu:row:delById">
+            <shiro:hasPermission name="menu_row_delById">
             var urlDelById = urlRoute + 'delById';/*根据id查询对应的数据*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="menu:row:queryById">
+            <shiro:hasPermission name="menu_row_queryById">
             var urlQueryById = urlRoute + 'queryById';/*根据id查询对应的数据*/
             </shiro:hasPermission>
             var urlQueryTreeMenu = urlPrefix + notAuthorized;
-            <shiro:hasPermission name="menu:btn:queryTreeMenu">
+            <shiro:hasPermission name="menu_btn_queryTreeMenu">
             urlQueryTreeMenu = urlPrefix + urlRoute + 'queryTreeMenu';/*获取所有当前登录人的权限菜单*/
             </shiro:hasPermission>
             var thisTable = pageDataTable.initDataTable({
@@ -1262,10 +1262,10 @@
                         targets : -1,//指定的列
                         render : function(value,type,row,meta){
                             var html = '';//上线后要删除
-                            <shiro:hasPermission name="menu:row:edit">
+                            <shiro:hasPermission name="menu_row_edit">
                             html += "<a href='javascript:thisPage.rowEdit("+meta.row+");' style='outline:none;text-decoration: none;color:#3b8cff;margin-left:6px;'>编辑</a>";
                             </shiro:hasPermission>
-                            <shiro:hasPermission name="menu:row:delById">
+                            <shiro:hasPermission name="menu_row_delById">
                             html += "<a href='javascript:thisPage.rowDel("+meta.row+");' style='outline:none;text-decoration: none;color:#f00;margin-left:6px;'>删除</a>";
                             </shiro:hasPermission>
                             <shiro:hasRole name="administrators">
@@ -1290,7 +1290,7 @@
             var domTree = 'treeDom';
             var tree_obj = null;//变量标识,用于初始化及取消选中操作及获取已选中节点数据
             var setting = {
-                <shiro:hasPermission name="menu:btn:queryTreeMenu">
+                <shiro:hasPermission name="menu_btn_queryTreeMenu">
                 view : {
                     expandSpeed : 100,
                     showLine : true,
@@ -1428,7 +1428,7 @@
                     });
                 },
                 divDisplay : function(value){
-                    <shiro:hasPermission name="menu:btn:queryTreeMenu">
+                    <shiro:hasPermission name="menu_btn_queryTreeMenu">
                     if(value == '2' || value == '3'){
                         document.getElementById("div_controller_subset").style.display="none";
                         document.getElementById("div_controller_icon").style.display="none";
@@ -1439,15 +1439,15 @@
                     </shiro:hasPermission>
                 },
                 btnEvent : function(){
-                    <shiro:hasPermission name="menu:row:edit">
+                    <shiro:hasPermission name="menu_row_edit">
                     $(tableDom +' tbody').on('dblclick','tr',function(){
                         thisPage.trDblclick(thisTable.row(this).data());
                     });</shiro:hasPermission>
-                    <shiro:hasPermission name="menu:btn:add">
+                    <shiro:hasPermission name="menu_btn_add">
                     $('#btnAdd').on('click',function(){
                         thisPage.edit();
                     });</shiro:hasPermission>
-                    <shiro:hasPermission name="menu:btn:listData">
+                    <shiro:hasPermission name="menu_btn_listData">
                     $('#btnSearch').on('click',function(){
                         thisPage.search();
                     });
@@ -1502,11 +1502,11 @@
                         tree_obj.cancelSelectedNode();//取消选中
                     }
                 },
-                <shiro:hasPermission name="menu:row:edit">
+                <shiro:hasPermission name="menu_row_edit">
                 trDblclick : function(data){
                     thisPage.edit(data.kid);
                 },</shiro:hasPermission>
-                <shiro:hasPermission name="menu:btn:listData">
+                <shiro:hasPermission name="menu_btn_listData">
                 search : function(){
                     $(tableDom + ' input[type=checkbox]').prop('checked',false);
                     thisTable.draw();
@@ -1523,17 +1523,17 @@
                     var title = '添加菜单';
                     if(kid != null && kid.length >0){
                         title = '编辑菜单';
-                        <shiro:hasPermission name="menu:row:queryById">
+                        <shiro:hasPermission name="menu_row_queryById">
                         winFn.setDomValue('#menu_edit_keyId',kid);
                         layerFn.queryByIdHint(urlQueryById,kid,function(data){
-                            <shiro:hasPermission name="menu:row:edit">
+                            <shiro:hasPermission name="menu_row_edit">
                             thisPage.openDialog(title,kid,data);
                             </shiro:hasPermission>
                         });
                         </shiro:hasPermission>
                     }else{
                         winFn.setDomValue('#menu_edit_keyId','');
-                        <shiro:hasPermission name="menu:btn:add">
+                        <shiro:hasPermission name="menu_btn_add">
                         thisPage.openDialog(title,null,null);
                         </shiro:hasPermission>
                     }
@@ -1692,11 +1692,11 @@
                             break;
                     }
                 },
-                <shiro:hasPermission name="menu:row:edit">
+                <shiro:hasPermission name="menu_row_edit">
                 rowEdit : function(index){
                     thisPage.edit(thisJquery.fnGetData(index).kid);
                 },</shiro:hasPermission>
-                <shiro:hasPermission name="menu:row:delById">
+                <shiro:hasPermission name="menu_row_delById">
                 rowDel : function(index){
                     var row = thisJquery.fnGetData(index);
                     layerFn.confirm('['+row.name+']删除后连同角色菜单及用户私有菜单都被删除且是无法恢复,确定要删除吗?',function(){
@@ -1712,11 +1712,11 @@
                 },
                 commit : function(kid,index,params){
                     var url = notAuthorized;
-                    <shiro:hasPermission name="menu:btn:add">
+                    <shiro:hasPermission name="menu_btn_add">
                     url = urlAdd;
                     </shiro:hasPermission>
                     if (kid != null && kid != ''){
-                        <shiro:hasPermission name="menu:row:edit">
+                        <shiro:hasPermission name="menu_row_edit">
                         url = urlEdit;
                         </shiro:hasPermission>
                     }

@@ -11,7 +11,7 @@
                 <div class="clearfix">
                     <table class="no-border" style="display:inline">
                         <tr>
-                            <shiro:hasPermission name="role:btn:listData">
+                            <shiro:hasPermission name="role_btn_listData">
                             <td>
                                 角色名称
                             </td>
@@ -27,7 +27,7 @@
                                 </div>
                             </td>
                             </shiro:hasPermission>
-                            <shiro:hasPermission name="role:btn:add">
+                            <shiro:hasPermission name="role_btn_add">
                             <td>
                                 <div class="input-group">
                                 <span class="input-group-btn">
@@ -39,7 +39,7 @@
                                 </div>
                             </td>
                             </shiro:hasPermission>
-                            <shiro:hasPermission name="role:btn:delByKeys">
+                            <shiro:hasPermission name="role_btn_delByKeys">
                             <td>
                                 <div class="input-group">
                                 <span class="input-group-btn">
@@ -53,11 +53,11 @@
                             </shiro:hasPermission>
                         </tr>
                     </table>
-                    <shiro:hasPermission name="role:btn:listData">
+                    <shiro:hasPermission name="role_btn_listData">
                     <div class="hidden-480 pull-right tableTools-container"></div>
                     </shiro:hasPermission>
                 </div>
-                <shiro:hasPermission name="role:btn:listData">
+                <shiro:hasPermission name="role_btn_listData">
                 <table id="tableListRole" class="table table-striped table-bordered table-hover"></table>
                 </shiro:hasPermission>
             </div>
@@ -92,29 +92,29 @@
         var tableDom = '#tableListRole';
         var checkOption = false;
         $(function(){
-            <shiro:hasPermission name="role:btn:listData">
+            <shiro:hasPermission name="role_btn_listData">
             var urlRoute = '/role/';/*请求controller层的url*/
             var notAuthorized = urlRoute + "notAuthorized";
             var getList = urlRoute + 'listData';/*获取菜单列表,此处不需要添加的,已在请求的url添加了前缀*/
-            <shiro:hasPermission name="role:btn:add">
+            <shiro:hasPermission name="role_btn_add">
             var urlAdd = urlRoute + 'add';/*添加*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="role:row:edit">
+            <shiro:hasPermission name="role_row_edit">
             var urlEdit = urlRoute + 'edit';/*编辑*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="role:row:delById">
+            <shiro:hasPermission name="role_row_delById">
             var urlDelById = urlRoute + 'delById';/*根据id删除对应的数据*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="role:btn:delByKeys">
+            <shiro:hasPermission name="role_btn_delByKeys">
             var urlDelByKeys = urlRoute + 'delByKeys';/*批量删除*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="role:row:delEmptyMenu">
+            <shiro:hasPermission name="role_row_delEmptyMenu">
             var urlDelEmptyMenu = urlRoute + 'delEmptyMenu';/*行按钮清空菜单*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="role:row:getRoleMenu">
+            <shiro:hasPermission name="role_row_getRoleMenu">
             var urlGetRoleMenu = urlRoute + 'getRoleMenu';/*根据指定roleId获取菜单用于分配私有菜单*/
             </shiro:hasPermission>
-            <shiro:hasPermission name="role:row:saveRoleMenu">
+            <shiro:hasPermission name="role_row_saveRoleMenu">
             var urlSaveRoleMenu = urlRoute + 'saveRoleMenu';/*保存角色菜单*/
             </shiro:hasPermission>
             var thisTable = pageDataTable.initDataTable({
@@ -187,17 +187,17 @@
                             var roleFlag = row.role_flag;
                             if(roleFlag == 'administrators'){
                                 var html = '';//上线后要删除
-                                <shiro:hasPermission name="role:row:edit">
+                                <shiro:hasPermission name="role_row_edit">
                                 html += "<a href='javascript:thisPage.unAuth();' style='outline:none;text-decoration: none;color:#3b8cff;margin-left:6px;'>编辑</a>";
                                 </shiro:hasPermission>
-                                <shiro:hasPermission name="role:row:delById">
+                                <shiro:hasPermission name="role_row_delById">
                                 html += "<a class='hidden-xs' href='javascript:thisPage.unAuth();' style='outline:none;text-decoration: none;color:#f00;margin-left:6px;'>删除</a>";
                                 </shiro:hasPermission>
-                                <shiro:hasPermission name="role:row:delEmptyMenu">
+                                <shiro:hasPermission name="role_row_delEmptyMenu">
                                 html += "<a href='javascript:thisPage.unAuth();' style='outline:none;text-decoration: none;color:#1d953f;margin-left:6px;'>清空菜单</a>";
                                 </shiro:hasPermission>
-                                <shiro:hasPermission name="role:row:getRoleMenu">
-                                <shiro:hasPermission name="role:row:saveRoleMenu">
+                                <shiro:hasPermission name="role_row_getRoleMenu">
+                                <shiro:hasPermission name="role_row_saveRoleMenu">
                                 html += "<a href='javascript:thisPage.unAuth();' style='outline:none;text-decoration: none;color:#008792;margin-left:6px;'>角色菜单</a>";
                                 </shiro:hasPermission>
                                 </shiro:hasPermission>
@@ -210,17 +210,17 @@
                                 return html;
                             }else{
                                 var html = '';
-                                <shiro:hasPermission name="role:row:edit">
+                                <shiro:hasPermission name="role_row_edit">
                                 html += "<a href='javascript:thisPage.rowEdit("+meta.row+");' style='outline:none;text-decoration: none;color:#3b8cff;margin-left:6px;'>编辑</a>";
                                 </shiro:hasPermission>
-                                <shiro:hasPermission name="role:row:delById">
+                                <shiro:hasPermission name="role_row_delById">
                                 html += "<a class='hidden-xs' href='javascript:thisPage.rowDel("+meta.row+");' style='outline:none;text-decoration: none;color:#f00;margin-left:6px;'>删除</a>";
                                 </shiro:hasPermission>
-                                <shiro:hasPermission name="role:row:delEmptyMenu">
+                                <shiro:hasPermission name="role_row_delEmptyMenu">
                                 html += "<a href='javascript:thisPage.rowEmptyMenu("+meta.row+");' style='outline:none;text-decoration: none;color:#1d953f;margin-left:6px;'>清空菜单</a>";
                                 </shiro:hasPermission>
-                                <shiro:hasPermission name="role:row:getRoleMenu">
-                                <shiro:hasPermission name="role:row:saveRoleMenu">
+                                <shiro:hasPermission name="role_row_getRoleMenu">
+                                <shiro:hasPermission name="role_row_saveRoleMenu">
                                 html += "<a href='javascript:thisPage.rowRoleMenu("+meta.row+");' style='outline:none;text-decoration: none;color:#008792;margin-left:6px;'>角色菜单</a>";
                                 </shiro:hasPermission>
                                 </shiro:hasPermission>
@@ -276,15 +276,15 @@
                     this.btnEvent();
                 },
                 btnEvent : function(){
-                    <shiro:hasPermission name="role:row:edit">
+                    <shiro:hasPermission name="role_row_edit">
                     $(tableDom +' tbody').on('dblclick','tr',function(){
                         thisPage.trDblclick(thisTable.row(this).data());
                     });</shiro:hasPermission>
-                    <shiro:hasPermission name="role:btn:add">
+                    <shiro:hasPermission name="role_btn_add">
                     $('#btnAdd').on('click',function(){
                         thisPage.edit();
                     });</shiro:hasPermission>
-                    <shiro:hasPermission name="role:btn:listData">
+                    <shiro:hasPermission name="role_btn_listData">
                     /*普通搜索按钮*/
                     $('#btnSearch').on('click',function(){
                         thisPage.search();
@@ -297,12 +297,12 @@
                     $('#iconRefresh').on('click',function(){
                         thisPage.search();
                     });</shiro:hasPermission>
-                    <shiro:hasPermission name="role:btn:delByKeys">
+                    <shiro:hasPermission name="role_btn_delByKeys">
                     $('#btnDel').on('click',function(){
                         thisPage.delKeys();
                     });</shiro:hasPermission>
                 },
-                <shiro:hasPermission name="role:btn:delByKeys">
+                <shiro:hasPermission name="role_btn_delByKeys">
                 /*批量删除*/
                 delKeys : function(){
                     var kids = '';
@@ -344,11 +344,11 @@
                 unAuth : function(){
                     layerFn.alert('无权限操作',AppKey.code.code199);
                 },
-                <shiro:hasPermission name="role:row:edit">
+                <shiro:hasPermission name="role_row_edit">
                 trDblclick : function(data){
                     thisPage.edit(data.kid,data.role_name,data.role_flag);
                 },</shiro:hasPermission>
-                <shiro:hasPermission name="role:btn:listData">
+                <shiro:hasPermission name="role_btn_listData">
                 search : function(){
                     $(tableDom + ' input[type=checkbox]').prop('checked',false);
                     thisTable.draw();
@@ -360,13 +360,13 @@
                     var title = '添加角色';
                     if(kid != null && kid.length >0){
                         title = '编辑角色';
-                        <shiro:hasPermission name="role:row:edit">
+                        <shiro:hasPermission name="role_row_edit">
                         winFn.setDomValue('#input_role_edit_keyId',kid);
                         thisPage.openDialog(title,kid);
                         </shiro:hasPermission>
                     }else{
                         winFn.setDomValue('#input_role_edit_keyId','');
-                        <shiro:hasPermission name="role:btn:add">
+                        <shiro:hasPermission name="role_btn_add">
                         thisPage.openDialog(title,null);
                         </shiro:hasPermission>
                     }
@@ -394,12 +394,12 @@
                         thisPage.commit(kid,index,params);
                     });
                 },
-                <shiro:hasPermission name="role:row:edit">
+                <shiro:hasPermission name="role_row_edit">
                 rowEdit : function(index){
                     var data = thisJquery.fnGetData(index);
                     thisPage.edit(data.kid,data.role_name,data.role_flag);
                 },</shiro:hasPermission>
-                <shiro:hasPermission name="role:row:delById">
+                <shiro:hasPermission name="role_row_delById">
                 rowDel : function(index){
                     var row = thisJquery.fnGetData(index);
                     var _role_flag_ = row.role_flag;//上线后要删除
@@ -417,7 +417,7 @@
                         });
                     });
                 },</shiro:hasPermission>
-                <shiro:hasPermission name="role:row:delEmptyMenu">
+                <shiro:hasPermission name="role_row_delEmptyMenu">
                 /*清空菜单*/
                 rowEmptyMenu : function(index){
                     var row = thisJquery.fnGetData(index);
@@ -432,7 +432,7 @@
                         });
                     });
                 },</shiro:hasPermission>
-                <shiro:hasPermission name="role:row:getRoleMenu">
+                <shiro:hasPermission name="role_row_getRoleMenu">
                 /*角色菜单*/
                 rowRoleMenu : function(index){
                     var row = thisJquery.fnGetData(index);
@@ -450,7 +450,7 @@
                                     kids += value;
                                 }
                             });
-                            <shiro:hasPermission name="role:row:saveRoleMenu">
+                            <shiro:hasPermission name="role_row_saveRoleMenu">
                             layerFn.submit(urlSaveRoleMenu,{kids:kids,roleId:row.kid},function(data){
                                 thisPage.complete(data,index,true);
                             });
@@ -469,11 +469,11 @@
                 },</shiro:hasPermission>
                 commit : function(kid,index,params){
                     var url = notAuthorized;
-                    <shiro:hasPermission name="role:btn:add">
+                    <shiro:hasPermission name="role_btn_add">
                     url = urlAdd;
                     </shiro:hasPermission>
                     if (kid != null && kid != ''){
-                        <shiro:hasPermission name="role:row:edit">
+                        <shiro:hasPermission name="role_row_edit">
                         url = urlEdit;
                         </shiro:hasPermission>
                     }
