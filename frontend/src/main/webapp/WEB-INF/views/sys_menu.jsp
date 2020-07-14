@@ -214,7 +214,7 @@
         </div>
         <label class="col-sm-3 control-label no-padding-right" for="order_by"><div class="hr-4"></div>显示排序</label>
         <div class="col-sm-7"><div class="hr-4"></div><%--input--%>
-            <input type="text" id="order_by" placeholder="排序顺序,值越大越往后" class="form-control" oninput = "value=value.replace(/[^\d]/g,'')"/>
+            <input type="text" id="order_by" placeholder="排序顺序,值越大越往后" class="form-control" oninput="value=value.replace(/[^\d]/g,'')"/>
         </div>
         <input type="hidden" id="subId" />
     </form>
