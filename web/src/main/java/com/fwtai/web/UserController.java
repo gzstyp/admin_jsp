@@ -1,6 +1,6 @@
 package com.fwtai.web;
 
-import com.fwtai.service.web.UserService;
+import com.fwtai.service.core.UserService;
 import com.fwtai.tool.ToolClient;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.GetMapping;

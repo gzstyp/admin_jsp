@@ -2,7 +2,7 @@ package com.fwtai.auth;
 
 import com.fwtai.config.ConfigFile;
 import com.fwtai.entity.User;
-import com.fwtai.service.web.UserService;
+import com.fwtai.service.core.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

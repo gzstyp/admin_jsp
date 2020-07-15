@@ -1,7 +1,7 @@
 package com.fwtai.auth;
 
 import com.fwtai.config.ConfigFile;
-import com.fwtai.service.web.UserService;
+import com.fwtai.service.core.UserService;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
