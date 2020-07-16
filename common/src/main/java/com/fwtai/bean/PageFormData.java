@@ -45,11 +45,11 @@ public final class PageFormData extends HashMap<String,Object>{
         while(paramNames.hasMoreElements()){
             final String key = paramNames.nextElement().trim();
             if(key.equals("_"))continue;
-            final String value = request.getParameter(key).trim();
+            String value = request.getParameter(key);
             if(value != null && value.length() > 0){
-                if(value.length() == 1 && value.equals("_"))continue;
-                if(value.equalsIgnoreCase("undefined"))continue;
-                if(value.equalsIgnoreCase("null"))continue;
+                value = value.trim();
+                if(checkNull(value))
+                    continue;
                 map.put(key,value);
             }
         }
@@ -160,15 +160,11 @@ public final class PageFormData extends HashMap<String,Object>{
         return jsonArray;
     }
 
-    private boolean checkNull(String value){
-        if(value.length() <= 0)
-            return true;
-        if(value.length() == 1 && value.equals("_"))
-            return true;
-        if(value.equalsIgnoreCase("undefined"))
-            return true;
-        if(value.equalsIgnoreCase("null"))
-            return true;
+    private boolean checkNull(final String value){
+        if(value.length() <= 0)return true;
+        if(value.equals("_"))return true;
+        if(value.equalsIgnoreCase("undefined"))return true;
+        if(value.equalsIgnoreCase("null"))return true;
         return false;
     }
 
