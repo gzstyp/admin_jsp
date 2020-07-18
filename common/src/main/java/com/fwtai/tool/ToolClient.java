@@ -1094,7 +1094,6 @@ public final class ToolClient implements Serializable{
     public final static UploadObject uploadImage(final HttpServletRequest request,final String baseDir,final Integer limit,final boolean verify){
         final UploadObject uploadObject = new UploadObject();
         final PageFormData formData = new PageFormData(request);
-        final UploadFile uploadFile = new UploadFile();
         MultipartHttpServletRequest mhsr = null;
         try {
             mhsr =  (MultipartHttpServletRequest) request;
@@ -1146,6 +1145,7 @@ public final class ToolClient implements Serializable{
                 }
                 final String fullPath = (baseDir + dayDir + fileName).replaceAll("//","/");
                 mf.transferTo(new File(fullPath));
+                final UploadFile uploadFile = new UploadFile();
                 uploadFile.setUrlFile("/images"+dayDir + fileName);
                 uploadFile.setOriginalName(originalName);
                 uploadFile.setFullPath(fullPath);
