@@ -318,9 +318,9 @@ public class UserService{
             pageFormData = ToolClient.dataTableMysql(pageFormData);
             if(pageFormData == null)return ToolClient.jsonValidateField();
             final String loginUser = getLoginUser();
-            if(!loginUser.equals(ConfigFile.KEY_SUPER)){
+            pageFormData.put("userId",getLoginKey());
+            if(loginUser.equals(ConfigFile.KEY_SUPER)){
                 pageFormData.put("keySuper",loginUser);
-                pageFormData.put("userId",getLoginKey());
             }
             final HashMap<String,Object> map = userDao.listData(pageFormData);
             return ToolClient.dataTableOK((List<Object>)map.get(ConfigFile.rows),map.get(ConfigFile.total),pageFormData.get("sEcho"));
