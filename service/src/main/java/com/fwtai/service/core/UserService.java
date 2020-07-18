@@ -317,8 +317,8 @@ public class UserService{
         try {
             pageFormData = ToolClient.dataTableMysql(pageFormData);
             if(pageFormData == null)return ToolClient.jsonValidateField();
-            final String loginUser = getLoginUser();
-            pageFormData.put("userId",getLoginKey());
+            final String loginUser = ToolClient.getLoginUser();
+            pageFormData.put("userId",ToolClient.getLoginKey());
             if(loginUser.equals(ConfigFile.KEY_SUPER)){
                 pageFormData.put("keySuper",loginUser);
             }
@@ -345,13 +345,5 @@ public class UserService{
         if(validate != null)return validate;
         final String userId = pageFormData.getString(p_userId);
         return ToolClient.queryJson(userDao.getMenuData(userId));
-    }
-
-    private String getLoginKey(){
-        return String.valueOf(ToolClient.getRequest().getSession().getAttribute(ConfigFile.LOGIN_KEY));
-    }
-
-    private String getLoginUser(){
-        return String.valueOf(ToolClient.getRequest().getSession().getAttribute(ConfigFile.LOGIN_USER));
     }
 }

@@ -1193,4 +1193,12 @@ public final class ToolClient implements Serializable{
             }.start();
         } catch (Exception e){}
     }
+
+    public final static String getLoginKey(){
+        return String.valueOf(getRequest().getSession().getAttribute(ConfigFile.LOGIN_KEY));
+    }
+
+    public final static String getLoginUser(){
+        return String.valueOf(getRequest().getSession().getAttribute(ConfigFile.LOGIN_USER));
+    }
 }

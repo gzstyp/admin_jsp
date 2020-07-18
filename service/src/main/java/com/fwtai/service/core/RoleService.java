@@ -101,6 +101,10 @@ public class RoleService{
         try {
             pageFormData = ToolClient.dataTableMysql(pageFormData);
             if(pageFormData == null)return ToolClient.jsonValidateField();
+            final String loginUser = ToolClient.getLoginUser();
+            if(loginUser.equals(ConfigFile.KEY_SUPER)){
+                pageFormData.put("keySuper",loginUser);
+            }
             final HashMap<String,Object> map = roleDao.listData(pageFormData);
             return ToolClient.dataTableOK((List<Object>)map.get(ConfigFile.rows),map.get(ConfigFile.total),pageFormData.get("sEcho"));
         } catch (Exception e){
