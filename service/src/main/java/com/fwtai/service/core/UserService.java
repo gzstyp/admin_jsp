@@ -340,7 +340,12 @@ public class UserService{
         final String validate = ToolClient.validateField(pageFormData,p_userId);
         if(validate != null)return validate;
         final String userId = pageFormData.getString(p_userId);
-        return ToolClient.queryJson(userDao.getOwnMenu(userId));
+        final String loginUser = ToolClient.getLoginUser();
+        if(loginUser.equals(ConfigFile.KEY_SUPER)){
+            return ToolClient.queryJson(userDao.getOwnMenuForSuper(userId));
+        }
+        pageFormData.put("loginId",ToolClient.getLoginKey());
+        return ToolClient.queryJson(userDao.getOwnMenuForLogin(pageFormData));
     }
 
     //查看指定userid权限菜单数据
