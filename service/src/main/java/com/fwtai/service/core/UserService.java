@@ -94,8 +94,13 @@ public class UserService{
     }
 
     public String getAllotRole(final PageFormData pageFormData){
+        final String loginUser = ToolClient.getLoginUser();
         final String userId = pageFormData.getString("userId");
-        return ToolClient.queryJson(userDao.getAllotRole(userId));
+        if(loginUser.equals(ConfigFile.KEY_SUPER)){
+            return ToolClient.queryJson(userDao.getSuperAllotRole(userId));
+        }else{
+            return ToolClient.queryJson(userDao.getUserIdAllotRole(ToolClient.getLoginKey(),userId));
+        }
     }
 
     public List<HashMap<String,String>> queryPermissions(){
