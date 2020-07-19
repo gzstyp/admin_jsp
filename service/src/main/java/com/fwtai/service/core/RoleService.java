@@ -125,8 +125,13 @@ public class RoleService{
         final String p_roleId = "roleId";
         final String validate = ToolClient.validateField(pageFormData,p_roleId);
         if(validate != null)return validate;
-        final String roleId = pageFormData.getString(p_roleId);
-        return ToolClient.queryJson(roleDao.getRoleMenu(roleId));
+        final String loginUser = ToolClient.getLoginUser();
+        if(loginUser.equals(ConfigFile.KEY_SUPER)){
+            return ToolClient.queryJson(roleDao.getRoleMenuSuper(pageFormData.getString(p_roleId)));
+        }else{
+            pageFormData.put("userId",ToolClient.getLoginKey());
+            return ToolClient.queryJson(roleDao.getRoleMenu(pageFormData));
+        }
     }
 
     public String saveRoleMenu(final PageFormData pageFormData){
