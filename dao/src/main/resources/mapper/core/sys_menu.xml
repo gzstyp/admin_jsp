@@ -157,6 +157,7 @@
         <if test="type != null">
             AND sm.TYPE = #{type}
         </if>
+        LIMIT 1
     </select>
 
     <!-- 查询所有的菜单,用于菜单的添加或编辑 -->
