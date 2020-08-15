@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.Serializable;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,7 +51,7 @@ public final class ToolString implements Serializable {
 	public final static String transCoding(final Object object){
 		if(object != null){
 			try {
-				return new String(object.toString().getBytes("ISO8859-1"),"UTF-8");
+				return new String(object.toString().getBytes("ISO8859-1"),StandardCharsets.UTF_8);
 			} catch (Exception e){
 				return null;
 			}
