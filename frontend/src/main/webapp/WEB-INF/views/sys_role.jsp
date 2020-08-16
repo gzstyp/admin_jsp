@@ -177,7 +177,7 @@
                     {
                         targets : 0,//指定的列
                         render : function(value,type,row,meta){//第1个参数可能会没有值!!!,当key不存在时就没有值
-                            return '<label><input type="checkbox" name="kid" value="'+value+'" style="cursor:pointer;text-decoration:none;outline:none;"/><span class="lbl"></span></label>';
+                            return '<label title="选择|取消"><input type="checkbox" name="kid" value="'+value+'" style="cursor:pointer;text-decoration:none;outline:none;"/><span class="lbl"></span></label>';
                         }
                     },
                     {
