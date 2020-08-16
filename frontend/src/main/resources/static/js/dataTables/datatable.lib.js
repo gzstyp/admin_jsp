@@ -183,7 +183,8 @@
                     //console.info(row);
                     //console.info(data);
                     //console.info(index);
-                    $(row).find("td:eq(0)").css({"cursor":"pointer"});//好使,显示第1列为手型的鼠标形状
+                    $(row).find("td:eq(0)").css({"cursor":"pointer"}).attr("title","选择|取消");//好使,显示第1列为手型的鼠标形状
+                    //$(row).find("td:eq(0) input").addClass("ace");//好使!!!
                 },
                 /*每一行被创建，但还没有被加载到document中，这个函数优先于createdRow,个人觉得用createdRow更好*/
                 rowCallback : function (row,data,index) {
