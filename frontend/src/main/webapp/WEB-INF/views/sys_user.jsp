@@ -160,7 +160,7 @@
                         mData : "kid",
                         sWidth : "38px",
                         sClass : "center",
-                        sTitle : '<label class="pos-rel" title="全选|不选"><input type="checkbox" class="ace" /><span class="lbl"></span></label>'
+                        sTitle : '<label title="全选|不选"><input type="checkbox" class="ace" /><span class="lbl"></span></label>'
                     },
                     {
                         mData : "user_name",
