@@ -98,17 +98,18 @@
             });
 
             //(基于每一行的第一列的选择/取消选择而该行被选择或取消选择) a row when the checkbox is checked/unchecked
-            $(tableDom).on('click', 'td:eq(0) input[type=checkbox]' , function(){
+            /*$(tableDom).on('click', 'td:eq(0) input[type=checkbox]' , function(){
                 var row = $(this).closest('tr').get(0);
                 if(!this.checked) dataTable.row(row).deselect();
                 else dataTable.row(row).select();
-            });
+            });*/
 
-            $(document).on('click',tableDom+'.dropdown-toggle', function(e) {
+            /*点击后显示更多???*/
+            /*$(document).on('click',tableDom+'.dropdown-toggle', function(e) {
                 e.stopImmediatePropagation();
                 e.stopPropagation();
                 e.preventDefault();
-            });
+            });*/
         },
         // pageDataTable.tooltip();
         tooltip : function(){
@@ -153,7 +154,8 @@
                 bDeferRender : true,
                 select : {
                     style : 'multi',
-                    selector : 'td:first-child'
+                    //selector : 'td:first-child'//指定选择器,即指定哪一个列或哪一个元素作为该行的选中或取消选中
+                    selector : 'td:first-child input'
                 },
                 searching : false,
                 destroy : true,
@@ -183,8 +185,9 @@
                     //console.info(row);
                     //console.info(data);
                     //console.info(index);
-                    $(row).find("td:eq(0)").css({"cursor":"pointer"}).attr("title","选择|取消");//好使,显示第1列为手型的鼠标形状
-                    //$(row).find("td:eq(0) input").addClass("ace");//好使!!!
+                    //$(row).find("td:eq(0)").css({"cursor":"pointer"}).attr("title","选择|取消");//好使,显示第1列为手型的鼠标形状
+                    $(row).find("td:eq(0)").attr("title","选择|取消");//好使,显示第1列为手型的鼠标形状
+                    $(row).find("td:eq(0) input[type=checkbox]").attr("class","ace");
                 },
                 /*每一行被创建，但还没有被加载到document中，这个函数优先于createdRow,个人觉得用createdRow更好*/
                 rowCallback : function (row,data,index) {
