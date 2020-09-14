@@ -604,7 +604,7 @@ public final class ToolClient implements Serializable{
                 writer.write(createJson(ConfigFile.code201,ConfigFile.msg201));
                 writer.flush();
             }else{
-                writer.write(String.valueOf(JSON.parse(json)));
+                writer.write(json);
                 writer.flush();
             }
 		}catch (IOException e){
