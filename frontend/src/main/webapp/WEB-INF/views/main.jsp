@@ -90,7 +90,7 @@
             <li class=""><a data-url="welcome.html" href="#welcome.html"><i class="menu-icon glyphicon glyphicon-home"></i><span class="menu-text">欢迎使用</span></a><b class="arrow"></b></li>
             ${menuData}
         </ul>
-        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" title="展开收缩">
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" title="展开收缩" style="cursor:pointer">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
         </div>
     </div>
