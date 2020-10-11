@@ -22,11 +22,11 @@
                                         <%--页面显示控制及js控制--%>
                                     </shiro:hasPermission>
                                     <span class="input-group-btn">
-                                    <button type="button" class="btn btn-inverse btn-white" id="btnSearch">
-                                        <span class="ace-icon fa fa-search bigger-110"></span>
-                                        搜索
-                                    </button>
-                                </span>
+                                        <button type="button" class="btn btn-inverse btn-white" id="btnSearch">
+                                            <span class="ace-icon fa fa-search bigger-110"></span>
+                                            搜索
+                                        </button>
+                                    </span>
                                 </div>
                             </td>
                             </shiro:hasPermission>
